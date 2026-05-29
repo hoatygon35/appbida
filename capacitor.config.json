@@ -1,0 +1,10 @@
+{
+  "appId": "com.bidawin.app",
+  "appName": "Bida Win",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://tien.vaothi.com",
+    "cleartext": true
+  }
+}
