@@ -181,7 +181,7 @@
                                             </td>
                                             <td class="py-2 px-3 text-right font-semibold text-slate-600" x-text="formatVND(item.price)"></td>
                                             <td class="py-2 px-3 text-center">
-                                                <input type="number" x-model.number="item.pivot.quantity" min="1" @focus="$el.select()" class="!w-16 text-center border border-slate-200 rounded-lg py-1 px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
+                                                <input type="number" x-model.number="item.pivot.quantity" min="1" @focus="$el.select()" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
                                             </td>
                                             <td class="py-2 px-3 text-center">
                                                 <button type="button" @click="currentSessionServices.splice(idx, 1)" 
