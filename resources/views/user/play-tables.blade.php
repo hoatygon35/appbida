@@ -127,8 +127,8 @@
         </div>
 
             <!-- 1. MODAL CHI TIẾT & DỊCH VỤ ĐÃ GỌI (Modal 1) -->
-        <div x-show="showServiceModal" class="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] max-md:pt-0 bg-black/60 backdrop-blur-sm overflow-y-auto p-4 max-md:items-end max-md:p-0" x-cloak>
-            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh] max-md:rounded-t-3xl max-md:rounded-b-none max-md:max-h-[80vh]">
+        <div x-show="showServiceModal" class="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] max-md:pt-[5vh] bg-black/60 backdrop-blur-sm overflow-y-auto p-4 max-md:p-2" x-cloak>
+            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh] max-md:max-h-[90vh]">
                 <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                     <h3 class="text-base font-bold text-slate-800 uppercase tracking-wide flex items-center gap-2">
                         <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -231,8 +231,8 @@
         </div>
 
         <!-- 2. MODAL THÊM DỊCH VỤ MỚI (Modal 2 - Rộng hơn, có cột Ghi chú) -->
-        <div x-show="showAddServiceModal" class="fixed inset-0 z-[60] flex items-start justify-center pt-[10vh] max-md:pt-0 bg-black/60 backdrop-blur-sm p-4 max-md:items-end max-md:p-0" x-cloak>
-            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh] max-md:rounded-t-3xl max-md:rounded-b-none">
+        <div x-show="showAddServiceModal" class="fixed inset-0 z-[60] flex items-start justify-center pt-[10vh] max-md:pt-[5vh] bg-black/60 backdrop-blur-sm overflow-y-auto p-4 max-md:p-2" x-cloak>
+            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh] max-md:max-h-[90vh]">
                 <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                     <h3 class="text-sm font-black text-slate-800 uppercase tracking-wide">Thêm dịch vụ</h3>
                     <button @click="showAddServiceModal = false" class="text-slate-400 hover:text-slate-600">
