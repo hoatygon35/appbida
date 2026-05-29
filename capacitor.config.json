@@ -1,6 +1,6 @@
 {
   "appId": "com.bidawin.app",
-  "appName": "Bida Win",
+  "appName": "Quản lý Cafe/Billards",
   "webDir": "public",
   "bundledWebRuntime": false,
   "server": {
