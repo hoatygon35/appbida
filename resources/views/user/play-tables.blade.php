@@ -287,7 +287,7 @@
                                                class="w-full px-2 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition min-w-[100px]">
                                     </td>
                                     <td class="py-3 px-1.5 sm:px-3 text-center">
-                                        <input type="number" x-model.number="item.qty" min="0" @focus="$el.select()" class="!w-[48px] sm:!w-[56px] text-center border border-slate-200 rounded-lg py-1 px-0.5 sm:px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
+                                        <input type="number" x-model.number="item.qty" min="0" @focus="$el.select()" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-0.5 sm:px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
                                     </td>
                                 </tr>
                             </template>
@@ -870,11 +870,9 @@
                     this.ajaxRequest("{{ route('play-tables.checkout') }}", { session_id: this.checkoutData.sessionId })
                         .then(res => {
                             if (res.success) {
-                                // Mở trang in hóa đơn trong tab mới
+                                // Chuyển hướng trực tiếp đến trang in hóa đơn để không bị pop-up blocker chặn trên mobile
                                 const printUrl = `{{ url('/invoices') }}/${res.invoice_id}/print`;
-                                window.open(printUrl, '_blank');
-                                // Tải lại trang chính
-                                window.location.reload();
+                                window.location.href = printUrl;
                             } else {
                                 this.triggerToast('Lỗi thanh toán', 'error');
                             }
