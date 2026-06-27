@@ -141,18 +141,18 @@
                 
                 <div class="p-6 overflow-y-auto flex-grow space-y-5">
                     <!-- Session Stopwatch & Current Fee Info -->
-                    <div class="bg-indigo-50/70 p-4 rounded-2xl border border-indigo-100 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-indigo-50/70 p-3 sm:p-4 rounded-2xl border border-indigo-100 grid grid-cols-3 gap-2 sm:gap-4 text-[10px] sm:text-xs">
                         <div>
                             <p class="text-indigo-400 font-bold uppercase tracking-wider">Bắt đầu</p>
-                            <p class="text-sm font-black text-slate-800 mt-0.5" x-text="activeTableStartTime ? activeTableStartTime.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) : '--:--'"></p>
+                            <p class="text-xs sm:text-sm font-black text-slate-800 mt-0.5" x-text="activeTableStartTime ? activeTableStartTime.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) : '--:--'"></p>
                         </div>
-                        <div>
+                        <div class="text-center sm:text-left">
                             <p class="text-indigo-400 font-bold uppercase tracking-wider">Kết thúc</p>
-                            <p class="text-sm font-black text-slate-800 mt-0.5" x-text="activeTableCurrentTime"></p>
+                            <p class="text-xs sm:text-sm font-black text-slate-800 mt-0.5" x-text="activeTableCurrentTime"></p>
                         </div>
-                        <div class="col-span-2 sm:col-span-1 text-right">
+                        <div class="text-right">
                             <p class="text-indigo-400 font-bold uppercase tracking-wider">Tiền giờ</p>
-                            <p class="text-lg font-black text-slate-800 mt-0.5" x-text="formatVND(activeTableFee)"></p>
+                            <p class="text-sm sm:text-lg font-black text-slate-800 mt-0.5" x-text="formatVND(activeTableFee)"></p>
                         </div>
                     </div>
 
@@ -162,7 +162,7 @@
                             <h4 class="text-xs font-black uppercase text-slate-400 tracking-wider">Dịch vụ đã gọi</h4>
                         </div>
                         
-                        <div class="overflow-y-auto pr-1">
+                        <div class="overflow-y-auto pr-1 pb-[50vh] sm:pb-0">
                             <table class="w-full text-left border-collapse mt-2">
                                 <thead>
                                     <tr class="bg-slate-50 text-[10px] uppercase font-bold text-slate-400 tracking-wider">
@@ -181,7 +181,7 @@
                                             </td>
                                             <td class="py-2 px-3 text-right font-semibold text-slate-600" x-text="formatVND(item.price)"></td>
                                             <td class="py-2 px-3 text-center">
-                                                <input type="number" x-model.number="item.pivot.quantity" min="1" @focus="$el.select()" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
+                                                <input type="number" x-model.number="item.pivot.quantity" min="1" @focus="$el.select(); setTimeout(() => $el.scrollIntoView({behavior: 'smooth', block: 'center'}), 300)" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
                                             </td>
                                             <td class="py-2 px-3 text-center">
                                                 <button type="button" @click="currentSessionServices.splice(idx, 1)" 
@@ -267,7 +267,7 @@
                 </div>
 
                 <!-- Services List Table với cột Ghi chú -->
-                <div class="overflow-y-auto flex-grow">
+                <div class="overflow-y-auto flex-grow pb-[50vh] sm:pb-0">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-50 text-[10px] uppercase font-bold text-slate-400 tracking-wider sticky top-0">
@@ -287,7 +287,7 @@
                                                class="w-full px-2 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition min-w-[100px]">
                                     </td>
                                     <td class="py-3 px-1.5 sm:px-3 text-center">
-                                        <input type="number" x-model.number="item.qty" min="0" @focus="$el.select()" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-0.5 sm:px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
+                                        <input type="number" x-model.number="item.qty" min="0" @focus="$el.select(); setTimeout(() => $el.scrollIntoView({behavior: 'smooth', block: 'center'}), 300)" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-0.5 sm:px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
                                     </td>
                                 </tr>
                             </template>
