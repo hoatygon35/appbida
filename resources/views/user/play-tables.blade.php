@@ -128,7 +128,7 @@
 
             <!-- 1. MODAL CHI TIẾT & DỊCH VỤ ĐÃ GỌI (Modal 1) -->
         <div x-show="showServiceModal" class="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] max-md:pt-[5vh] bg-black/60 backdrop-blur-sm overflow-y-auto p-4 max-md:p-2" x-cloak>
-            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh] max-md:max-h-[90vh]">
+            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh]" :class="isKeyboardOpen ? 'max-md:max-h-[45vh]' : 'max-md:max-h-[90vh]'">
                 <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                     <h3 class="text-base font-bold text-slate-800 uppercase tracking-wide flex items-center gap-2">
                         <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -141,18 +141,18 @@
                 
                 <div class="p-6 overflow-y-auto flex-grow space-y-5">
                     <!-- Session Stopwatch & Current Fee Info -->
-                    <div class="bg-indigo-50/70 p-3 sm:p-4 rounded-2xl border border-indigo-100 grid grid-cols-3 gap-2 sm:gap-4 text-[10px] sm:text-xs">
+                    <div class="bg-indigo-50/70 p-3 sm:p-4 rounded-2xl border border-indigo-100 flex justify-between items-center text-[10px] sm:text-xs">
                         <div>
                             <p class="text-indigo-400 font-bold uppercase tracking-wider">Bắt đầu</p>
-                            <p class="text-xs sm:text-sm font-black text-slate-800 mt-0.5" x-text="activeTableStartTime ? activeTableStartTime.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) : '--:--'"></p>
+                            <p class="text-[11px] sm:text-sm font-black text-slate-800 mt-0.5 whitespace-nowrap" x-text="activeTableStartTime ? activeTableStartTime.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}) : '--:--'"></p>
                         </div>
-                        <div class="text-center sm:text-left">
+                        <div class="text-center mx-1">
                             <p class="text-indigo-400 font-bold uppercase tracking-wider">Kết thúc</p>
-                            <p class="text-xs sm:text-sm font-black text-slate-800 mt-0.5" x-text="activeTableCurrentTime"></p>
+                            <p class="text-[11px] sm:text-sm font-black text-slate-800 mt-0.5 whitespace-nowrap" x-text="activeTableCurrentTime"></p>
                         </div>
                         <div class="text-right">
                             <p class="text-indigo-400 font-bold uppercase tracking-wider">Tiền giờ</p>
-                            <p class="text-sm sm:text-lg font-black text-slate-800 mt-0.5" x-text="formatVND(activeTableFee)"></p>
+                            <p class="text-xs sm:text-lg font-black text-slate-800 mt-0.5 whitespace-nowrap" x-text="formatVND(activeTableFee)"></p>
                         </div>
                     </div>
 
@@ -181,7 +181,7 @@
                                             </td>
                                             <td class="py-2 px-3 text-right font-semibold text-slate-600" x-text="formatVND(item.price)"></td>
                                             <td class="py-2 px-3 text-center">
-                                                <input type="number" x-model.number="item.pivot.quantity" min="1" @focus="$el.select(); setTimeout(() => $el.scrollIntoView({behavior: 'smooth', block: 'center'}), 300)" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
+                                                <input type="number" x-model.number="item.pivot.quantity" min="1" @focus="isKeyboardOpen = true; $el.select(); setTimeout(() => $el.scrollIntoView({behavior: 'smooth', block: 'center'}), 150)" @blur="isKeyboardOpen = false" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
                                             </td>
                                             <td class="py-2 px-3 text-center">
                                                 <button type="button" @click="currentSessionServices.splice(idx, 1)" 
@@ -232,7 +232,7 @@
 
         <!-- 2. MODAL THÊM DỊCH VỤ MỚI (Modal 2 - Rộng hơn, có cột Ghi chú) -->
         <div x-show="showAddServiceModal" class="fixed inset-0 z-[60] flex items-start justify-center pt-[10vh] max-md:pt-[5vh] bg-black/60 backdrop-blur-sm overflow-y-auto p-4 max-md:p-2" x-cloak>
-            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh] max-md:max-h-[90vh]">
+            <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transition-all transform scale-100 flex flex-col max-h-[85vh]" :class="isKeyboardOpen ? 'max-md:max-h-[45vh]' : 'max-md:max-h-[90vh]'">
                 <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                     <h3 class="text-sm font-black text-slate-800 uppercase tracking-wide">Thêm dịch vụ</h3>
                     <button @click="showAddServiceModal = false" class="text-slate-400 hover:text-slate-600">
@@ -283,11 +283,11 @@
                                     <td class="py-3 px-4 font-bold text-slate-800" x-text="item.name"></td>
                                     <td class="py-3 px-3 font-extrabold text-slate-600 whitespace-nowrap" x-text="formatVND(item.price)"></td>
                                     <td class="py-3 px-3">
-                                        <input type="text" x-model="item.note" placeholder="Ghi chú..."
+                                        <input type="text" x-model="item.note" placeholder="Ghi chú..." @focus="isKeyboardOpen = true; setTimeout(() => $el.scrollIntoView({behavior: 'smooth', block: 'center'}), 150)" @blur="isKeyboardOpen = false"
                                                class="w-full px-2 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition min-w-[100px]">
                                     </td>
                                     <td class="py-3 px-1.5 sm:px-3 text-center">
-                                        <input type="number" x-model.number="item.qty" min="0" @focus="$el.select(); setTimeout(() => $el.scrollIntoView({behavior: 'smooth', block: 'center'}), 300)" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-0.5 sm:px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
+                                        <input type="number" x-model.number="item.qty" min="0" @focus="isKeyboardOpen = true; $el.select(); setTimeout(() => $el.scrollIntoView({behavior: 'smooth', block: 'center'}), 150)" @blur="isKeyboardOpen = false" style="width: 50px;" class="text-center border border-slate-200 rounded-lg py-1 px-0.5 sm:px-1 text-slate-800 font-bold focus:ring-2 focus:ring-indigo-400/20 focus:border-indigo-400 mx-auto inline-block shadow-sm">
                                     </td>
                                 </tr>
                             </template>
@@ -551,6 +551,7 @@
 
             // Dashboard Play Manager State
             Alpine.data('playManager', () => ({
+                isKeyboardOpen: false,
                 showServiceModal: false,
                 showAddServiceModal: false,
                 showChangeTableModal: false,
